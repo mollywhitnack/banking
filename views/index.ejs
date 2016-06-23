@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Banking App</title>
+  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+  <script src="/bower_components/angular/angular.min.js"></script>
+
+  <script src="/bower_components/sweetalert/dist/sweetalert.min.js"></script> 
+  <link rel="stylesheet" type="text/css" href="/bower_components/sweetalert/dist/sweetalert.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
+  <script src="main.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body ng-app = 'myApp' ng-controller = 'mainCtrl'>
+  
+
+<div class = "container">
+<h1 class = "text-center title">Bank $tatment</h1>
+
+  <form ng-submit = 'addTransaction()'>
+    <div class="form-group">
+      <label >Description</label>
+      <input type="text" class="form-control" placeholder="Description" ng-model = 'newTransaction.description' required>
+    </div>
+    <div class="form-group">
+      <label >Date</label>
+      <input type="date" class="form-control" placeholder="Date" ng-model = 'newTransaction.date' required>
+    </div>
+    <div class="form-group">
+      <label >Amount</label>
+      <input type="number" class="form-control" ng-model = 'newTransaction.amount' required>
+    </div>
+    <div class = "text-center radioBtns">
+      <span class = "credit"><input type="radio" name="type" value="credit"  ng-model = 'newTransaction.type' > Credit <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </span>
+      <span class = "debit"><input type="radio" name="type" value="debit"  ng-model = 'newTransaction.type'> Debit <span class="glyphicon glyphicon-minus" aria-hidden="true"></span></span>
+    </div>
+    <div class = "text-center submitbt"><button type="submit" class="btn btn-primary">Submit</button></div>
+  </form>
+<hr>
+  <div class= "displayTotal" ng-model = 'sum'>Current Total : {{sum | currency}}</div>
+
+  <table class="table" ng-hide = "transactions.length ===0">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Date</th>
+        <th>Charge</th>
+        <th>Total</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat = 'transaction in transactions track by $index'>
+      <td >{{transaction.description}}</td>
+      <td >{{transaction.date | date:'medium'}}</td>
+      <td >{{transaction.amount | currency}}</td>
+      <td>{{transaction.total | currency}}</td>
+      <td><button class="btn btn-danger" ng-click = 'deleteTransaction($index)'>Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+<hr>
+<div class = "text-center">
+<button class = "btn btn-info dePositBtn" ng-model="deposit" ng-show="deposits" ng-click="deposit=!deposit">Deposits</button>
+<button class = "btn btn-warning withdrawlBtn" ng-model="withdraw" ng-show="withdrawls " ng-click="withdraw=!withdraw">Withdrawals</button>
+</div>
+
+<table class="DepositTable table" ng-show="deposit && deposits">
+    <thead>
+      <tr>
+        <th>Deposits</th>
+        <th>Date</th>
+        <th>Charge</th>
+        <th>Total Deposits</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat = 'transaction in transactions track by $index' >
+      <td ng-if ='transaction.type === "credit"' >{{transaction.description}}</td>
+      <td  ng-if ='transaction.type === "credit"'>{{transaction.date | date:'medium'}}</td>
+      <td ng-if ='transaction.type === "credit"' >{{transaction.amount | currency}}</td>
+      <td ng-if ='transaction.type === "credit"'>{{transaction.dTotal | currency}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+<table class="WithdrawlTable table" ng-show="withdraw && withdrawls ">
+    <thead>
+      <tr>
+        <th>Withdrawals</th>
+        <th>Date</th>
+        <th>Charge</th>
+        <th>Total Withdrawals</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat = 'transaction in transactions track by $index'>
+      <td ng-if ='transaction.type === "debit"'>{{transaction.description}}</td>
+      <td ng-if ='transaction.type === "debit"'>{{transaction.date | date:'medium'}}</td>
+      <td ng-if ='transaction.type === "debit"'>{{transaction.amount | currency}}</td>
+      <td ng-if ='transaction.type === "debit"'>{{transaction.wTotal | currency}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+</div>
+</body>
+</html>

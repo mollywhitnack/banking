@@ -1,0 +1,48 @@
+html{
+   background-image: url("http://previews.123rf.com/images/jokter/jokter1206/jokter120600015/14165365-Lots-of-real-money-background-one-hundred-dollars--Stock-Photo.jpg");
+}
+
+.ng-scope{
+  background-color:rgba(255, 255, 255, 0);
+}
+
+.title{
+  padding-bottom: 20px;
+  padding-top: 20px;
+  color:green;
+}
+.container{
+  background-color:rgba(255, 255, 255, 0.9);
+  padding-bottom: 30px;
+  margin-top: 30px;
+}
+.displayTotal{
+  text-align:center;
+  margin:0 auto;
+  padding-top: 30px;
+  padding-bottom: 50px;
+  font-size: 170%;
+}
+
+.submitbt{
+ padding-top:15px;
+}
+
+.credit, .debit{
+  padding-left:5px;
+  padding-right:5px;
+  font-size: 130%;
+
+}
+
+.withdrawlBtn, .dePositBtn{
+
+}
+
+.glyphicon-plus{
+  color:green;
+}
+
+.glyphicon-minus{
+  color:red;
+}

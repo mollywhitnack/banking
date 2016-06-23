@@ -17,7 +17,7 @@
   
 
 <div class = "container">
-<h1 class = "text-center title">Bank $tatment</h1>
+<h1 class = "text-center title">Bank $tatement</h1>
 
   <form ng-submit = 'addTransaction()'>
     <div class="form-group">
@@ -30,7 +30,7 @@
     </div>
     <div class="form-group">
       <label >Amount</label>
-      <input type="number" class="form-control" ng-model = 'newTransaction.amount' required>
+      <input type="number" class="form-control" ng-model = 'newTransaction.amount' required min='0' >
     </div>
     <div class = "text-center radioBtns">
       <span class = "credit"><input type="radio" name="type" value="credit"  ng-model = 'newTransaction.type' > Credit <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </span>

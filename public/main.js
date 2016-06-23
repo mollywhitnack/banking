@@ -28,13 +28,6 @@ app.controller('mainCtrl', function($scope, $interval, $localStorage){
   $scope.withdrawls = $scope.$storage.withdrawls || 0;
   $scope.$storage.withdrawls = $scope.withdrawls;
 
-  //$scope.deposits = 0;
-  //$scope.deposits = 0;
-  //$scope.withdrawls = 0;
-  /*$scope.wSum = 0;
-  $scope.dSum = 0;
-  $scope.sum = 0;*/
-
   $scope.addTransaction = function(){
     if($scope.newTransaction.type == "debit"){
       $scope.withdrawls++;
@@ -61,6 +54,10 @@ app.controller('mainCtrl', function($scope, $interval, $localStorage){
 
     if( $scope.sum < 0){
        swal({   title: "YOU ARE POOR!",   text: "Yikes....",   imageUrl: "http://www.clipartbest.com/cliparts/xcg/o99/xcgo99Kdi.png" });
+    }
+
+    if( $scope.sum >10000){
+       swal({   title: "MAKE IT RAIN ON DEM HOEZ",   text: "Young mula baby",   imageUrl: "http://charts.stocktwits.com/production/original_44716705.gif?1446222770", imageSize: '400x300' });
     }
 
     $scope.newTransaction.total = $scope.sum;
